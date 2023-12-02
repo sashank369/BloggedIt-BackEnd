@@ -11,10 +11,12 @@ const blogSchema = mongoose.Schema({
         type: [String],
         default: []
     },
+    
     createdAt: { 
         type: Date,
         default: new Date()
     },
+
 });
 
 const BlogMessage = mongoose.model('BlogMessage', blogSchema);
