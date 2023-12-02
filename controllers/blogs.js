@@ -11,6 +11,7 @@ export const getBlogs = async (req, res) => {
     }
 }
 
+
 export const getBlogBySearch = async (req, res) => {
     const { searchQuery, tags } = req.query; // get the search query and tags from the request
     try {
@@ -22,6 +23,7 @@ export const getBlogBySearch = async (req, res) => {
         res.status(404).json({ message: error.message }); // return error message        
     }
 }
+
 
 export const createBlog = async (req, res) => {
     const blog = req.body; // get the body of the request
