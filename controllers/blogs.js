@@ -3,9 +3,15 @@ import mongoose from 'mongoose'; // Importing mongoose
 import BlogMessage from "../models/blogMessage.js";    // Importing the BlogMessage model
 
 export const getBlogs = async (req, res) => {
+    const { page } = req.query; // get the page from the request
+
     try {
-        const blogMessages = await BlogMessage.find(); // find all the blog messages
-        res.status(200).json(blogMessages); // return the blog messages
+        const LIMIT = 8; // set the limit to 8
+        const startIndex = (Number(page) - 1) * LIMIT; // calculate the start index
+        const total = await BlogMessage.countDocuments({}); // count the total number of blog messages
+
+        const blogs = await BlogMessage.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex); // find all the blog messages
+        res.status(200).json({data: blogs, currentPage: Number(page), numberOfPages: Math.ceil(total/LIMIT)}); // return the blog messages
     } catch (error) {
         res.status(404).json({ message: error.message }); // return error message        
     }
