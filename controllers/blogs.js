@@ -17,6 +17,17 @@ export const getBlogs = async (req, res) => {
     }
 }
 
+export const getBlog = async (req, res) => {
+    const { id } = req.params; // get the id from the request
+
+    try {
+        const blog = await BlogMessage.findById(id); // find the blog message
+        res.status(200).json(blog); // return the blog message
+    } catch (error) {
+        res.status(404).json({ message: error.message }); // return error message
+    }
+}
+
 
 export const getBlogBySearch = async (req, res) => {
     const { searchQuery, tags } = req.query; // get the search query and tags from the request
