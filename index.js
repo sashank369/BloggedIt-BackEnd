@@ -1,11 +1,11 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import dotenv from 'dotenv'; // import dotenv
+const express = require('express'); // import express
+const bodyParser = require('body-parser'); // import body-parser
+const mongoose = require('mongoose'); // import mongoose
+const cors = require('cors'); // import cors
+const dotenv = require('dotenv'); // import dotenv
 
-import blogRoutes from './routes/blogs.js'; // import routes
-import userRoutes from './routes/users.js'; // import routes
+const blogRoutes = require('./routes/blogs.js'); // import routes
+const userRoutes = require('./routes/users.js'); // import routes
 
 const app = express(); // initialize express
 dotenv.config(); // initialize dotenv

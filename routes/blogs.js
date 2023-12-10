@@ -1,8 +1,7 @@
-import express from 'express';
+const express = require('express');
 
-import { getBlogs, getBlog, getBlogBySearch, createBlog, updateBlog, deleteBlog, likeBlog } from '../controllers/blogs.js';
-import { get } from 'mongoose';
-import auth from '../middleware/auth.js';
+const { getBlogs, getBlog, getBlogBySearch, createBlog, updateBlog, deleteBlog, likeBlog } = require('../controllers/blogs.js');
+const auth = require('../middleware/auth.js');
 
 const router = express.Router();
 
@@ -14,4 +13,4 @@ router.patch('/:id' , auth, updateBlog);
 router.delete('/:id' , auth, deleteBlog);
 router.patch('/:id/likeBlog' , auth, likeBlog);
 
-export default router;
+module.exports = router;

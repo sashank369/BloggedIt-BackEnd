@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 const blogSchema = mongoose.Schema({
     title: String,
@@ -21,4 +21,4 @@ const blogSchema = mongoose.Schema({
 
 const BlogMessage = mongoose.model('BlogMessage', blogSchema);
 
-export default BlogMessage;
+module.exports = BlogMessage;
