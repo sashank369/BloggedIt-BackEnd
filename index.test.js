@@ -1,51 +1,54 @@
 const request = require('supertest');
 const index = require('./index');
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
+const app = index.app;
 
-// Replace the following URL with your actual API endpoint
-const API_URL = '/blogs';
+describe('Test wrong login password', () => {
+  it('performs wrong pwd login and expects 400', async () => {
+    const response = await request(app)
+      .post('/user/signin')
+      .send({
+        email: 'rithvikramasani@gmail.com',
+        password: 'wrongpassword'
+      });
 
-// Test data for createBlog
-const testData = {
-  title: 'Test Blog',
-  message: 'This is a test blog post.',
-  name: 'Test Author',
-  tags: ['test', 'jest'],
-  selectedFile: 'test-file.jpg',
-};
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe('Invalid credentials');
+  });
 
-describe('POST /blogs', () => {
-  beforeAll(async () => {
-    // Connect to a test database or use a separate one
-    await mongoose.connect('mongodb+srv://rithvikramasani:rithvikramasani@cluster0.sgvjxgt.mongodb.net/', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-    });
+  it('returns an error if the user already exists', async () => {
+    const response = await request(app)
+      .post('/user/signup')
+      .send({
+        email: 'newuser@example.com',
+        password: 'password123',
+        confirmPassword: 'password123',
+        firstName: 'Jane',
+        lastName: 'Doe'
+      });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe('User already exists');
+  });
+
+  it('returns an error if passwords do not match', async () => {
+    const response = await request(app)
+      .post('/user/signup')
+      .send({
+        email: 'mismatch@example.com',
+        password: 'password123',
+        confirmPassword: 'mismatchedpassword',
+        firstName: 'Mismatched',
+        lastName: 'User'
+      });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe("Passwords don't match");
   });
 
   afterAll(async () => {
-    // Close the database connection after all tests
-    await mongoose.connection.close();
+    // Close the mongoose connection and wait for it to be closed
+    mongoose.disconnect();
   });
-
-  it('should create a new blog', async () => {
-    // Send a POST request to create a new blog
-    const response = await request(app)
-      .post(API_URL)
-      .send(testData)
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(201); // Expecting a 201 Created status
-
-    // Check if the response body matches the expected data
-    expect(response.body).toEqual(expect.objectContaining(testData));
-
-    // Optionally, you can store the created blog ID for later use in other tests
-    const createdBlogId = response.body._id;
-    // You might want to clear or reset the test data in your database after this test
-  });
-
-  // Add more test cases as needed
 });
