@@ -1,27 +1,8 @@
 ---
-- name: Pull Docker Image of Backend
+- name : Deploy Social-Media-App
   hosts: localhost
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
-  tasks:
-    - name: Pull image
-      docker_image:
-        name: rithvikramasani/bloggeditbackend:latest
-        source: pull
 
-    - name: Ensure Docker service is started
-      service:
-        name: docker
-        state: started
+  tasks :
 
-    - name: Remove existing container if exists
-      docker_container:
-        name: Backend
-        state: absent
-      ignore_errors: yes
-
-    - name: Running container
-      docker_container:
-        name: Backend
-        image: rithvikramasani/bloggeditbackend:latest
-        state: started
+    - name : Run Docker Compose
+      command: docker-compose up -d

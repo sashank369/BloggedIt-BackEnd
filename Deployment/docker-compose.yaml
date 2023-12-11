@@ -1,0 +1,10 @@
+version : '3'
+services : 
+  backend : 
+    image : rithvikramasani/bloggeditbackend:latest
+    ports :
+      - '3001:3001'
+    environment : 
+      - PORT = 5000
+      - CONNECTION_URL = mongodb+srv://rithvikramasani:rithvikramasani@cluster0.sgvjxgt.mongodb.net/
+      - JWT=somesecretkeyveryhardtocrack

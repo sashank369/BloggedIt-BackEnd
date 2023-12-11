@@ -39,15 +39,7 @@ pipeline{
         }
         stage('Stage 6: Ansible Deploying the Docker Image'){
             steps{
-                echo 'Deploying the Docker Image'
-                ansiblePlaybook becomeUser:null,
-                colorized: true,
-                credentialsId: 'localhost',
-                disableHostKeyChecking: true,
-                installation: 'Ansible',
-                inventory: 'Deployment/inventory',
-                playbook: 'Deployment/playbook.yml',
-                sudoUser: null
+                sh 'ansible-playbook -i Deployment/inventory Deployment/playbook.yml'
             }
         }
     }
