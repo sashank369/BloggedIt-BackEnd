@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Make port 4000 available to the world outside this container
-EXPOSE 4000
+EXPOSE 5000
 
 # Do tests
 CMD ["npm", "test"]
