@@ -5,7 +5,7 @@
     ansible_python_interpreter: /usr/bin/python3
   tasks:
     - name: Pull image
-      shell: docker pull docker.io/rithvikramasani/bloback:lastest
+      shell: docker pull docker.io/rithvikramasani/bloback:latest
     - name: Start docker service
       service:
         name: docker
