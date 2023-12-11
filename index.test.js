@@ -16,7 +16,9 @@ describe('Test wrong login password', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toBe('Invalid credentials');
   });
+});
 
+describe('Test Already Existing User', () => {
   it('returns an error if the user already exists', async () => {
     const response = await request(app)
       .post('/user/signup')
@@ -31,7 +33,9 @@ describe('Test wrong login password', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toBe('User already exists');
   });
+});
 
+describe('Test Password Mismatch', () => {
   it('returns an error if passwords do not match', async () => {
     const response = await request(app)
       .post('/user/signup')
@@ -46,9 +50,5 @@ describe('Test wrong login password', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toBe("Passwords don't match");
   });
-
-  afterAll(async () => {
-    // Close the mongoose connection and wait for it to be closed
-    mongoose.disconnect();
-  });
 });
+
