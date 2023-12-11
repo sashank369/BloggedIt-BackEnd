@@ -18,9 +18,10 @@ pipeline{
                 sh 'npm test'
             }
         }
-        stage('Stage 3: npm start') {
+        stage('Stage 3: Build Docker image') {
             steps {
-                sh 'npm start'
+                echo 'Building Docker image..'
+                sh 'docker build -t sashank369/blogged-it-backend .'
             }
         }
     }
