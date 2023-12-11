@@ -92,5 +92,18 @@ module.exports = {
         const updatedBlog = await BlogMessage.findByIdAndUpdate(id, blog, { new: true }); // update the blog message
 
         res.json(updatedBlog); // return the updated blog message
+    },
+
+    commentBlog : async (req, res) => {
+        const { id } = req.params; // get the id of the request
+        const { value } = req.body; // get the body of the request
+
+        const blog = await BlogMessage.findById(id); // find the blog message
+
+        blog.comments.push(value); // add the comment to the comments array
+
+        const updatedBlog = await BlogMessage.findByIdAndUpdate(id, blog, { new: true }); // update the blog message
+
+        res.json(updatedBlog); // return the updated blog message
     }
 };
