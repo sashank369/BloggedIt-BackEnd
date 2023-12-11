@@ -8,9 +8,20 @@
       docker_image:
         name: rithvikramasani/bloggedit-backend:latest
         source: pull
-    - name: Start docker service
+
+    - name: Ensure Docker service is started
       service:
         name: docker
         state: started
+
+    - name: Remove existing container if exists
+      docker_container:
+        name: Backend
+        state: absent
+      ignore_errors: yes
+
     - name: Running container
-      shell: docker run -it -d --name Backend rithvikramasani/bloggedit-backend
+      docker_container:
+        name: Backend
+        image: rithvikramasani/bloggedit-backend:latest
+        state: started
