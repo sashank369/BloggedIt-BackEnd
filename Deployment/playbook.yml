@@ -6,7 +6,7 @@
   tasks:
     - name: Pull image
       docker_image:
-        name: rithvikramasani/bloggedit-backend:latest
+        name: rithvikramasani/bloggeditbackend:latest
         source: pull
 
     - name: Ensure Docker service is started
@@ -23,5 +23,5 @@
     - name: Running container
       docker_container:
         name: Backend
-        image: rithvikramasani/bloggedit-backend:latest
+        image: rithvikramasani/bloggeditbackend:latest
         state: started

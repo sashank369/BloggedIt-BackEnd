@@ -22,7 +22,7 @@ pipeline{
             steps {
                 echo 'Building Docker image..'
                 script {
-                    docker_image = docker.build "rithvikramasani/bloggedit-backend:lastest"
+                    docker_image = docker.build "rithvikramasani/bloggeditbackend:lastest"
                 }
             }
         }
