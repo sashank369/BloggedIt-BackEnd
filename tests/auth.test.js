@@ -1,8 +1,9 @@
 const request = require('supertest');
-const index = require('./index');
+const index = require('../index');
 const mongoose = require('mongoose');
 
 const app = index.app;
+const closeServer = index.closeServer;
 
 describe('Test wrong login password', () => {
   it('performs wrong pwd login and expects 400', async () => {
@@ -50,5 +51,9 @@ describe('Test Password Mismatch', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toBe("Passwords don't match");
   });
+});
+
+afterAll(async () => {
+  await closeServer();
 });
 

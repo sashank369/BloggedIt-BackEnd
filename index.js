@@ -21,10 +21,27 @@ app.use('/user', userRoutes); // user routes
 // Connect to MongoDB
 const PORT = process.env.PORT || 5000;
 
+const server = app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
+// Connect to MongoDB
 mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => app.listen(PORT, () => console.log(`Server running on port ${PORT}`))) // listen to port 5000
-    .catch((error) => console.log(error.message));
+    .then(() => console.log('Connected to MongoDB'))
+    .catch((error) => console.error(error.message));
 
-module.exports = { app };
+const closeServer = async () => {
+try {
+    // Close the server gracefully
+    await server.close();
+    
+    // Close the MongoDB connection
+    await mongoose.connection.close();
 
-console.log("Hello World"); // print Hello World
+    console.log('Server and MongoDB connection closed');
+} catch (error) {
+    console.error('Error closing server and MongoDB connection:', error.message);
+}
+};
+
+module.exports = { app, closeServer };
