@@ -30,10 +30,10 @@ pipeline{
         stage('Stage 4: Push Docker image') {
             steps {
                 echo 'Pushing Docker image..'
-                script{
-                    docker.withRegistry('', 'DockerHubCred'){
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'DockerHubCred') {
                         docker_image.push()
-                        }
+                    }
                 }
             }
         }
