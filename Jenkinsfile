@@ -26,5 +26,16 @@ pipeline{
                 }
             }
         }
+
+        stage('Stage 4: Push Docker image') {
+            steps {
+                echo 'Pushing Docker image..'
+                script{
+                    docker.withRegistry('', 'DockerHubCred'){
+                        docker_image.push()
+                        }
+                }
+            }
+        }
     }
 }
