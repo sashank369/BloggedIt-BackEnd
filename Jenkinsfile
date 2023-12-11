@@ -37,15 +37,6 @@ pipeline{
                 }
             }
         }
-        stage('Stage 5: Cleaning the Docker Images'){
-            steps{
-                echo 'Cleaning the Docker Images'
-                script{
-                    sh 'docker container prune -f'
-                    sh 'docker image prune -f'
-                }
-            }
-        }
         stage('Stage 6: Ansible Deploying the Docker Image'){
             steps{
                 echo 'Deploying the Docker Image'
