@@ -11,4 +11,4 @@
         name: docker
         state: started
     - name: Running container
-      shell: docker run -d --name Backend -p 5000:5000 rithvikramasani/bloback:latest
+      shell: docker run -d --name Backend -p 8000:8000 rithvikramasani/bloback:latest
