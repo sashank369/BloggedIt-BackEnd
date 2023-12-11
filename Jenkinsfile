@@ -1,6 +1,7 @@
 pipeline{
     environment{
-        docker_image = ""
+        registry = "rithvikramasani/bloback"
+        dockerImage = ""
     }
     agent any
     stages{
@@ -18,35 +19,23 @@ pipeline{
                 sh 'npm test'
             }
         }
-        stage('Stage 3: Build Docker image') {
-            steps {
-                echo 'Building Docker image..'
+        stage('Building image') {
+            steps{
                 script {
-                    docker_image = docker.build "rithvikramasani/bloggeditbackend:lastest"
+                dockerImage = docker.build registry + ":latest"
                 }
             }
         }
-
-        stage('Stage 4: Push Docker image') {
-            steps {
-                echo 'Pushing Docker image..'
+        stage('Deploy Image') {
+            steps{
                 script {
-                    docker.withRegistry('', 'DockerHubCred') {
-                        docker_image.push()
+                    docker.withRegistry( '', 'DockerHubCred' ) {
+                        dockerImage.push()
                     }
                 }
             }
         }
-        stage('Stage 5: Cleaning the Docker Images'){
-            steps{
-                echo 'Cleaning the Docker Images'
-                script{
-                    sh 'docker container prune -f'
-                    sh 'docker image prune -f'
-                }
-            }
-        }
-        stage('Stage 6: Ansible Deploying the Docker Image'){
+        stage('Ansible Deploying the Docker Image'){
             steps{
                 echo 'Deploying the Docker Image'
                 ansiblePlaybook becomeUser:null,
