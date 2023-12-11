@@ -13,10 +13,6 @@ RUN npm install
 # Copy the current directory contents into the container at /app
 COPY . .
 
-EXPOSE 3000
-
 # Do tests
 CMD ["npm", "test"]
-
-# Define the command to start the application
 CMD ["node", "index.js"]

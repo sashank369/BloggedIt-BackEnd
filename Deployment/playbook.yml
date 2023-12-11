@@ -5,10 +5,10 @@
     ansible_python_interpreter: /usr/bin/python3
   tasks:
     - name: Pull image
-      shell: docker pull docker.io/rithvikramasani/bloback:latest
+      shell: docker pull rithvikramasani/bloback:latest
     - name: Start docker service
       service:
         name: docker
         state: started
     - name: Running container
-      shell: docker run -it -d --name Backend rithvikramasani/bloback
+      shell: docker run -d -p 8000:8000 rithvikramasani/bloback:latest
