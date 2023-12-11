@@ -21,7 +21,9 @@ pipeline{
         stage('Stage 3: Build Docker image') {
             steps {
                 echo 'Building Docker image..'
-                sh 'docker build -t sashank369/blogged-it-backend .'
+                script {
+                    docker_image = docker.build "sashank369/bloggedit-backend:latest"
+                }
             }
         }
     }
