@@ -18,15 +18,9 @@ pipeline{
                 sh 'npm test'
             }
         }
-        stage('Stage 3: Build and push docker image') {
+        stage('Stage 3: npm start') {
             steps {
-                echo 'Deploying....'
-                script {
-                    def dockerImage = docker.build("antonml/node-demo:master")
-                    docker.withRegistry('', 'demo-docker') {
-                        dockerImage.push('master')
-                    }
-                }
+                sh 'npm start'
             }
         }
     }
