@@ -6,8 +6,7 @@
   tasks:
     - name: Pull image
       docker_image:
-        name: rithvikramasani/bloggeditbackend:latest
-        source: pull
+        shell: docker pull rithvikramasani/bloggeditbackend:lastest
     - name: Start docker service
       service:
         name: docker
