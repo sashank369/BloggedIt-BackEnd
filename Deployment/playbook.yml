@@ -1,19 +1,16 @@
 ---
-- name: Deploy Docker Container
+- name: Pull Docker Image of Backend
   hosts: localhost
-  become: yes
-
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
   tasks:
-    - name: Pull Docker Image
+    - name: Pull image
       docker_image:
-        name: "rithvikramasani/bloggedit-backend"
-        tag: "latest"
+        name: rithvikramasani/bloggedit-backend:latest
         source: pull
-
-    - name: Start Docker Service
+    - name: Start docker service
       service:
         name: docker
         state: started
-
-    - name: Run Docker Container
-      shell: docker run -it -d --name bloggedit-backend rithvikramasani/bloggedit-backend
+    - name: Running container
+      shell: docker run -it -d --name Backend rithvikramasani/bloggedit-backend
