@@ -22,7 +22,7 @@ pipeline{
             steps {
                 echo 'Building Docker image..'
                 script {
-                    docker_image = docker.build "sashank369/bloggedit-backend:latest"
+                    docker_image = docker.build("sashank369/bloggedit-backend:${env.BUILD_ID}")
                 }
             }
         }
