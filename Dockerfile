@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Use port 5000 for the node server on the container
-EXPOSE 9000
+EXPOSE 3001
 
 # Do tests
 CMD ["npm", "test"]

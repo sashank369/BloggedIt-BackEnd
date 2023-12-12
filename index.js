@@ -19,7 +19,7 @@ app.use('/blogs', blogRoutes); // blog routes
 app.use('/user', userRoutes); // user routes
 
 // Connect to MongoDB
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 6001;
 
 const server = app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
