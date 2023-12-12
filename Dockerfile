@@ -13,6 +13,9 @@ RUN npm install
 # Copy the current directory contents into the container at /app
 COPY . .
 
+# Use port 5000 for the node server on the container
+EXPOSE 5000
+
 # Do tests
 CMD ["npm", "test"]
 CMD ["node", "index.js"]
