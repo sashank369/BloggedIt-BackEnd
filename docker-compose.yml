@@ -4,4 +4,7 @@ services:
     image: rithvikramasani/bloback:latest
     ports:
       - "3001:3002"
+    environment:
+      - PORT=3001
+      - CONNECTION_URL=mongodb+srv://rithvikramasani:rithvikramasani@cluster0.sgvjxgt.mongodb.net/
   
