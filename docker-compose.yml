@@ -1,7 +1,7 @@
 version: '3.5'
 services:
-  splitwise:
-    image: rithvikramasani/bloback
+  bloback:
+    image: rithvikramasani/bloback:latest
     ports:
       - "5000:5000"
   
