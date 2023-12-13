@@ -65,7 +65,7 @@ module.exports = {
         const blog = req.body; // get the body of the request
 
         if (!mongoose.Types.ObjectId.isValid(_id)) {
-            logger.error(`Invalid blog id: ${_id}`);
+            logger.warn(`Invalid blog id: ${_id}`);
             return res.status(404).send('No blog with that id'); // check if the id is valid
         }
 
@@ -79,7 +79,7 @@ module.exports = {
         const { id } = req.params; // get the id of the request
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            logger.error(`Invalid blog id: ${id}`);
+            logger.warn(`Invalid blog id: ${id}`);
             return res.status(404).send('No blog with that id'); // check if the id is valid
         }
 
@@ -93,12 +93,12 @@ module.exports = {
         const { id } = req.params; // get the id of the request
 
         if (!req.userId) {
-            logger.error('User is not authenticated');
+            logger.warn('User is not authenticated');
             return res.json({ message: "Unauthenticated" }); // check if the user is authenticated
         }
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            logger.error(`Invalid blog id: ${id}`);
+            logger.warn(`Invalid blog id: ${id}`);
             return res.status(404).send('No blog with that id'); // check if the id is valid
         }
 

@@ -11,13 +11,13 @@ module.exports = {
         try {
             const user = await User.findOne({ email });
             if (!user) {
-                logger.error("User doesn't exist");
+                logger.warn("User doesn't exist");
                 return res.status(404).json({ message: "User doesn't exist" });
             }
 
             const isPasswordCorrect = await bcrypt.compare(password, user.password);
             if (!isPasswordCorrect) {
-                logger.error("Invalid credentials");
+                logger.warn("Invalid credentials");
                 return res.status(400).json({ message: "Invalid credentials" });
             }
 
@@ -36,12 +36,12 @@ module.exports = {
         try {
             const existingUser = await User.findOne({ email });
             if (existingUser) {
-                logger.error("User already exists");
+                logger.warn("User already exists");
                 return res.status(400).json({ message: "User already exists" });
             }
 
             if (password !== confirmPassword) {
-                logger.error("Passwords don't match");
+                logger.warn("Passwords don't match");
                 return res.status(400).json({ message: "Passwords don't match" });
             }
 
