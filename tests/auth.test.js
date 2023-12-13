@@ -19,7 +19,6 @@ describe('Test wrong login password', () => {
   });
 });
 
-
 describe('Test Already Existing User', () => {
   it('returns an error if the user already exists', async () => {
     const response = await request(app)
