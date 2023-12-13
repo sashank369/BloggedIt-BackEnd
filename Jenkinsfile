@@ -49,7 +49,8 @@ pipeline{
                 playbook: 'Deployment/playbook.yml',
                 extraVars: [
                     CONNECTION_URL: CONNECTION_URL,
-                    PORT: PORT
+                    PORT: PORT,
+                    IMAGE_NAME: registry
                 ],
                 sudoUser: null
             }
