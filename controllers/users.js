@@ -4,6 +4,7 @@ const User = require('../models/user.js');
 const logger = require('../utils/logger.js');
 
 module.exports = {
+    
     // Sign in the user
     signin: async (req, res) => {
         const { email, password } = req.body;
