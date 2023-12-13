@@ -1,8 +1,9 @@
 const jwt = require('jsonwebtoken');
-
+const logger = require('../utils/logger');
 const auth = async (req, res, next) => {
     try {
         const token = req.headers.authorization.split(" ")[1]; // get the token from the header
+
         const isCustomAuth = token.length < 500; // check if the token is from google or not
 
         let decodedData;
@@ -18,7 +19,7 @@ const auth = async (req, res, next) => {
         next(); // move on to the next middleware
 
     } catch (error) {
-        console.log(error)
+        logger.error(error);
     }
 }
 

@@ -3,6 +3,7 @@ const bodyParser = require('body-parser'); // import body-parser
 const mongoose = require('mongoose'); // import mongoose
 const cors = require('cors'); // import cors
 const dotenv = require('dotenv'); // import dotenv
+const logger = require('./utils/logger.js'); // import logger
 
 const blogRoutes = require('./routes/blogs.js'); // import routes
 const userRoutes = require('./routes/users.js'); // import routes
@@ -22,26 +23,28 @@ app.use('/user', userRoutes); // user routes
 const PORT = process.env.PORT || 5000;
 
 const server = app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    logger.info(`Server running on port ${PORT}`);
 });
 
 // Connect to MongoDB
 mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Connected to MongoDB'))
-    .catch((error) => console.error(error.message));
+    .then(() => {
+        logger.info('MongoDB connection established');
+    })
+    .catch((error) => logger.error(`Error connecting to MongoDB: ${error.message}`));
 
 const closeServer = async () => {
-try {
-    // Close the server gracefully
-    await server.close();
-    
-    // Close the MongoDB connection
-    await mongoose.connection.close();
+    try {
+        // Close the server gracefully
+        await server.close();
+        
+        // Close the MongoDB connection
+        await mongoose.connection.close();
 
-    console.log('Server and MongoDB connection closed');
-} catch (error) {
-    console.error('Error closing server and MongoDB connection:', error.message);
-}
+        logger.info('Server and MongoDB connection closed');
+    } catch (error) {
+        logger.error(`Error closing server and MongoDB connection: ${error.message}`);
+    }
 };
 
 module.exports = { app, closeServer };
