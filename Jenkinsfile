@@ -50,7 +50,7 @@ pipeline{
                 extraVars: [
                     CONNECTION_URL: CONNECTION_URL,
                     PORT: PORT
-                ]
+                ],
                 sudoUser: null
             }
         }
