@@ -2,8 +2,8 @@ pipeline{
     environment{
         registry = "rithvikramasani/bloback"
         dockerImage = ""
-        PORT = 3001
-        CONNECTION_URL = "mongodb+srv://rithvikramasani:rithvikramasani@cluster0.sgvjxgt.mongodb.net/"
+        PORT = 5000
+        CONNECTION_URL = credentials('CONNECTION_URL')
     }
     agent any
     stages{

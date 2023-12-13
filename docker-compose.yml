@@ -1,10 +1,9 @@
 version: '3.5'
 services:
-  bloback:
-    image: rithvikramasani/bloback:latest
+  backend:
+    image: laxmisreenivas/pixture-server:latest
     ports:
-      - "3001:3002"
+      - '5000:5000'
     environment:
-      - PORT=3001
-      - CONNECTION_URL=mongodb+srv://rithvikramasani:rithvikramasani@cluster0.sgvjxgt.mongodb.net/
-  
+      - CONNECTION_URL=${CONNECTION_URL}
+      - PORT=${PORT}
