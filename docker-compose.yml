@@ -1,9 +1,10 @@
 version: '3.5'
 services:
   backend:
-    image: ${IMAGE_NAME}:latest
+    image: ${registry}:latest
     ports:
       - '5000:5000'
     environment:
       - CONNECTION_URL=${CONNECTION_URL}
+      - registry=${registry}
       - PORT=${PORT}

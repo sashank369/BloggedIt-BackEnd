@@ -50,7 +50,7 @@ pipeline{
                 extraVars: [
                     CONNECTION_URL: CONNECTION_URL,
                     PORT: PORT,
-                    IMAGE_NAME: registry
+                    registry: registry
                 ],
                 sudoUser: null
             }

@@ -17,4 +17,5 @@
       command: docker-compose up -d --build
       environment:
         CONNECTION_URL: "{{CONNECTION_URL}}"
+        registry: "{{registry}}"
         PORT: "{{PORT}}"
