@@ -1,6 +1,6 @@
 pipeline{
     environment{
-        registry = "rithvikramasani/bloback"
+        registry = credentials('BackEndRegistry')
         dockerImage = ""
         PORT = 5000
         CONNECTION_URL = credentials('CONNECTION_URL')

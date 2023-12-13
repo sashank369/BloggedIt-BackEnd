@@ -1,1 +1,3 @@
-localhost ansible_user = rithvik
+[localhost]
+127.0.0.1 ansible_connection=local ansible_user=rithvik
+127.0.0.1 ansible_connection=local ansible_user=sashank
