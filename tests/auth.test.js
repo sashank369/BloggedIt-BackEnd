@@ -16,6 +16,7 @@ describe('Test wrong login password', () => {
     expect(response.status).toBe(400);
     expect(response.body.message).toBe('Invalid credentials');
   });
+  
 });
 
 describe('Test Already Existing User', () => {
