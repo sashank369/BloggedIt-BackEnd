@@ -1,6 +1,5 @@
 const request = require('supertest');
 const index = require('../index');
-const mongoose = require('mongoose');
 
 const app = index.app;
 const closeServer = index.closeServer;
